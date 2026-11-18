@@ -1,0 +1,27 @@
+{% extends 'Base.html' %}
+
+{% block title %}Home | NETWORK TRAFFIC DETECTION{% endblock %}
+
+{% block contents %}
+<!-- Header Section for Home Page -->
+<header class="header">
+    <div class="container">
+        <h1>Welcome to NETWORK TRAFFIC DETECTION</h1>
+        <p>Utilizing advanced machine learning models to assist in the detection of network traffic.</p>
+        <a href="{% url 'UserRegisterActions' %}" class="btn btn-primary btn-lg mt-4">Get Started</a>
+    </div>
+</header>
+
+<!-- Features Section -->
+<section class="content-section">
+    <div class="container">
+        <h2>Why Choose Our Solution?</h2>
+        <p>
+        <p>
+            Our machine learning-powered network traffic detection system ensures high accuracy, helping everyone to know their network traffic threat.
+        </p>
+        </p>
+        
+    </div>
+</section>
+{% endblock %}

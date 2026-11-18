@@ -1,0 +1,106 @@
+    {% extends 'users/UserBase.html' %}
+
+    {% block title %}NETWORK TRAFFIC DETECTION{% endblock %}
+    {% load static %}
+
+    {% block contents %}
+    
+ 
+    <div class="container mt-5">
+        <div class="card shadow-lg p-4">
+            <h1 class="text-center mb-4 text-primary">Cyber Threat Detection</h1>
+
+            <form method="POST" novalidate>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-outline-primary btn-block mt-3">Predict Threat</button>
+            </form>
+
+            {% if predicted_label %}
+            <div class="alert alert-info text-center mt-4">
+                <h4>Prediction: {{ prediction }}</h4>
+            </div>
+
+            <h5 class="text-success mt-4">Class Probabilities:</h5>
+            <table class="table table-bordered mt-2">
+                <thead class="thead-dark">
+                    <tr><th>Label</th><th>Probability</th></tr>
+                </thead>
+                <tbody>
+                    {% for label, prob in label_confidences.items %}
+                    <tr><td>{{ label }}</td><td>{{ prob }}</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+        </div>
+    </div>
+    {% endblock %}
+
+    
+
+    {% block styles %}
+    <style>
+        .card {
+            background-color: rgba(245, 245, 245, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            border: none;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+        }
+
+        h1 {
+            font-family: 'Segoe UI', sans-serif;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+        }
+
+        .form-control {
+            border-radius: 10px;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 6px rgba(0, 123, 255, 0.6);
+        }
+
+        button:hover {
+            background-color: #007bff;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .recommendation-section h4 {
+            font-weight: 600;
+            margin-top: 20px;
+        }
+
+        .list-group-item {
+            border: none;
+            background: rgba(240, 255, 255, 0.8);
+            margin-bottom: 5px;
+            border-radius: 8px;
+        }
+
+        .container {
+            max-width: 600px;
+        }
+    </style>
+    {% endblock %}

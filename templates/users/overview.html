@@ -1,0 +1,26 @@
+{% extends 'users/UserBase.html' %}
+{% load static %}
+
+{% block contents %}
+<div class="container mt-5">
+    <div class="card shadow p-4">
+        <h2 class="text-center text-primary mb-4">Cyber Threat Detection – Threat Overview</h2>
+
+        <p class="lead text-center mb-4">This page provides detailed descriptions of common network threats detected by the system.</p>
+
+        {% for threat in threats %}
+        <div class="border p-3 mb-4 rounded bg-light">
+            <h4 class="text-dark">
+                {{ threat.icon }} <strong>{{ threat.label }}</strong> — {{ threat.name }}
+            </h4>
+            <p><strong>Category:</strong> {{ threat.category }}</p>
+            <p>{{ threat.description }}</p>
+            {% if threat.tools %}
+            <p><strong>Tools / Variants:</strong> {{ threat.tools }}</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+ 
